@@ -5,6 +5,8 @@ Performance-first AI agent skills for **Jetpack Compose**. Each skill leads with
 **Author:** Santiago Mattiauda  
 **License:** Apache-2.0
 
+<img width="1376" height="768" alt="performance-compose-skills" src="https://github.com/user-attachments/assets/5266c4a9-9435-4242-9d4a-9fe0848910af" />
+
 ## Skills
 
 | Tier | Skill | Focus |
