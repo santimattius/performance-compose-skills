@@ -1,0 +1,56 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "performance-compose-skills",
+  "version": "1.1.0",
+  "owner": {
+    "name": "Santiago Mattiauda",
+    "url": "https://github.com/santimattius"
+  },
+  "metadata": {
+    "description": "Performance-first AI agent skills for Jetpack Compose. Skills lead with the Composition → Layout → Drawing model for state, recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, and accessibility."
+  },
+  "plugins": [
+    {
+      "name": "performance-compose-skills",
+      "description": "Performance-first agent skills for Jetpack Compose — recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, and accessibility grounded in the Composition → Layout → Drawing model.",
+      "repository": "https://github.com/santimattius/performance-compose-skills",
+      "version": "1.1.0",
+      "author": {
+        "name": "Santiago Mattiauda",
+        "url": "https://github.com/santimattius"
+      },
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "android",
+        "kotlin",
+        "jetpack-compose",
+        "compose-performance",
+        "recomposition",
+        "modifiers",
+        "effects",
+        "animations",
+        "navigation",
+        "previews",
+        "accessibility",
+        "performance",
+        "compose-composition-core",
+        "compose-modifier-system",
+        "compose-effects",
+        "compose-animations",
+        "compose-architecture",
+        "compose-navigation-nav3",
+        "compose-previews-tooling",
+        "compose-quality"
+      ],
+      "tags": [
+        "jetpack-compose",
+        "compose-performance",
+        "recomposition",
+        "performance",
+        "android"
+      ],
+      "source": "./"
+    }
+  ]
+}

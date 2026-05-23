@@ -1,0 +1,34 @@
+{
+  "name": "performance-compose-skills",
+  "version": "1.1.0",
+  "description": "Performance-first agent skills for Jetpack Compose — recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, and accessibility grounded in the Composition → Layout → Drawing model.",
+  "author": {
+    "name": "Santiago Mattiauda",
+    "url": "https://github.com/santimattius"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/santimattius/performance-compose-skills",
+  "keywords": [
+    "android",
+    "kotlin",
+    "jetpack-compose",
+    "compose-performance",
+    "recomposition",
+    "modifiers",
+    "effects",
+    "animations",
+    "navigation",
+    "previews",
+    "accessibility",
+    "performance",
+    "compose-composition-core",
+    "compose-modifier-system",
+    "compose-effects",
+    "compose-animations",
+    "compose-architecture",
+    "compose-navigation-nav3",
+    "compose-previews-tooling",
+    "compose-quality"
+  ],
+  "skills": ["./skills"]
+}
