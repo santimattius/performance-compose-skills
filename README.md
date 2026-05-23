@@ -22,6 +22,25 @@ Full registry: [AGENTS.md](AGENTS.md)
 
 ## Installation
 
+Supported agents: **Claude Code**, **Cursor**, **Gemini CLI**, **Antigravity**, **OpenCode**, and **Codex**.
+
+### Quick install (all agents)
+
+```bash
+npx skills add santimattius/performance-compose-skills \
+  --skill '*' \
+  -a claude-code -a cursor -a gemini-cli -a antigravity -a opencode -a codex \
+  -y
+```
+
+Or from a local clone:
+
+```bash
+./scripts/install-skills.sh --local
+```
+
+Full paths, native commands, and troubleshooting: **[docs/INSTALL.md](docs/INSTALL.md)**
+
 ### Claude Code (marketplace)
 
 ```bash
@@ -29,43 +48,26 @@ Full registry: [AGENTS.md](AGENTS.md)
 /plugin install performance-compose-skills@performance-compose-skills
 ```
 
-Local development (before publishing):
+### Project registry
 
-```bash
-/plugin marketplace add /path/to/performance-compose-skills
-/plugin install performance-compose-skills@performance-compose-skills
-```
-
-Skills are namespaced by plugin name (e.g. `/performance-compose-skills:compose-composition-core`).
-
-### Cursor (project)
-
-Copy the skills into your project:
-
-```bash
-git clone https://github.com/santimattius/performance-compose-skills.git
-cp -R performance-compose-skills/skills/* .cursor/skills/
-# or symlink:
-ln -s "$(pwd)/performance-compose-skills/skills" .cursor/skills/compose
-```
-
-Register in your project's agent instructions or load skills by name when triggers match (see each skill's `description` frontmatter).
-
-### Other agents
-
-Copy `skills/{skill-name}/` to your agent skills directory, or reference `AGENTS.md` from your project's `CLAUDE.md` / `AGENTS.md`.
+Add [AGENTS.md](AGENTS.md) to your Android repo (or symlink it) so agents load the skill index and the Composition → Layout → Drawing rule before writing Compose code.
 
 Each skill is self-contained: `SKILL.md` + `references/` (no external doc dependencies).
 
 ## Structure
 
 ```
-skills/
+skills/                    # Agent Skills (SKILL.md per skill)
 ├── compose-composition-core/
 │   ├── SKILL.md
 │   └── references/
 ├── ...
-AGENTS.md          # Skill registry (4 tiers)
+.claude-plugin/           # Claude Code plugin + marketplace
+├── plugin.json
+└── marketplace.json
+docs/INSTALL.md            # Multi-agent install guide
+scripts/install-skills.sh  # Install into all supported agents
+AGENTS.md                  # Skill registry (4 tiers)
 ```
 
 ## Contributing

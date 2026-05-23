@@ -2,6 +2,8 @@
 
 > **Performance Note**: Every skill in this registry leads with the Compose 3-phase performance model (Composition → Layout → Drawing). Load the relevant skill BEFORE writing Compose code — phase-awareness is non-negotiable.
 
+> **Install**: Skills live under `skills/` in this repo. Install into Claude Code, Cursor, Gemini CLI, Antigravity, OpenCode, or Codex via `npx skills add santimattius/performance-compose-skills --skill '*' -a <agent> -y` — see [docs/INSTALL.md](docs/INSTALL.md).
+
 ## Jetpack Compose
 
 <!-- Tier 1: Foundations -->
