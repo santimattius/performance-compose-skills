@@ -33,6 +33,12 @@
 | QLT-NO-SEMANTICS | Clickable without semantics/contentDescription | warning | any | compose-quality | — |
 | QLT-MERGE-DESCENDANTS-MISSING | Custom control without mergeDescendants | suggestion | any | compose-quality | — |
 | QLT-LIVE-REGION-MISSING | Dynamic status text without liveRegion | suggestion | any | compose-quality | — |
+| INTEROP-ANDROIDVIEW-UPDATE-HEAVY | AndroidView update block heavy work or allocates each recomposition | warning | any | compose-views-interop | — |
+| INTEROP-COMPOSEVIEW-WRONG-STRATEGY | ComposeView in Fragment/Dialog without lifecycle ViewCompositionStrategy | critical | any | compose-views-interop | Activity-only host with explicit strategy → downgrade if justified |
+| INTEROP-RECYCLERVIEW-RESET-CONTENT | setContent in RecyclerView onBindViewHolder | critical | any | compose-views-interop | — |
+| INTEROP-VIEWPAGER2-OFFSCREEN-COMPOSE | ViewPager2 high offscreenPageLimit with Compose-heavy pages | warning | any | compose-views-interop | — |
+| INTEROP-DIALOG-NO-LIFECYCLE-OWNER | ComposeView in Dialog/BottomSheet without lifecycle strategy | critical | any | compose-views-interop | Nav3 DialogScene only → compose-navigation-nav3 |
+| INTEROP-ANDROIDVIEW-UNNECESSARY | AndroidView wraps UI replaceable by Compose | suggestion | any | compose-views-interop | SDK-required MapView/WebView → discard |
 | CMP-PLATFORM-API-IN-COMMON | Platform import in commonMain | critical | commonMain | compose-architecture | — |
 | CMP-EXPECT-NO-ACTUAL | expect declaration without matching actual | warning | commonMain | compose-architecture | — |
 | CMP-REMEMBER-PLATFORM-LEAK | remember { platform type } in commonMain | warning | commonMain | compose-composition-core | — |
@@ -40,6 +46,6 @@
 ## Invariants
 
 1. Every `pattern_id` is unique.
-2. Every `Canonical Skill` is one of the eight skills in [AGENTS.md](../../../AGENTS.md).
+2. Every `Canonical Skill` is one of the nine skills in [AGENTS.md](../../../AGENTS.md).
 3. No row lists more than one canonical skill.
 4. Unmatched signals go to **Notes** in the audit report, never **Findings**.

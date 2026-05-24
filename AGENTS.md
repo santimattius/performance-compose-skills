@@ -22,6 +22,7 @@
 | Skill | Trigger | Link |
 |-------|---------|------|
 | `compose-architecture` | Clean Arch + MVI/MVVM in Compose, `collectAsStateWithLifecycle`, UiState/UiAction, Screen/Content split | [SKILL.md](skills/compose-architecture/SKILL.md) |
+| `compose-views-interop` | View↔Compose interop during incremental migration: `ComposeView`, `AndroidView`, `ViewCompositionStrategy`, RecyclerView/ViewPager2, Fragment/Dialog hybrids, custom View wrappers | [SKILL.md](skills/compose-views-interop/SKILL.md) |
 | `compose-navigation-nav3` | Nav3 1.0.0, `NavKey`, `NavDisplay`, `NavBackStack`, `SceneStrategy`, ViewModel decorators, Nav2 migration | [SKILL.md](skills/compose-navigation-nav3/SKILL.md) |
 
 <!-- Tier 4: Cross-cutting -->

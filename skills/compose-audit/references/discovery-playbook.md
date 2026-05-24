@@ -58,7 +58,24 @@ No Compose codebase detected — audit stopped.
 
 Do not emit findings against skill markdown or docs-only trees.
 
-## 7. Discovery output checklist
+## 7. Interop surfaces (hybrid apps)
+
+When `AndroidView`, `ComposeView`, or Fragment+Compose coexistence is detected, record counts in report header as `interop_surfaces`:
+
+```bash
+rg -c 'AndroidView\s*\(' -t kotlin --glob '!**/build/**' || true
+rg -c 'ComposeView|AbstractComposeView' -t kotlin --glob '!**/build/**' || true
+rg -c 'DialogFragment|BottomSheetDialogFragment' -t kotlin --glob '!**/build/**' || true
+rg -l 'setViewCompositionStrategy' -t kotlin --glob '!**/build/**' | wc -l
+```
+
+Example header field:
+
+```text
+interop_surfaces: { android_view: 12, compose_view: 8, dialog_fragment: 3, composition_strategy_files: 5 }
+```
+
+## 8. Discovery output checklist
 
 - [ ] `project_type`
 - [ ] `compose_version`
@@ -66,3 +83,4 @@ Do not emit findings against skill markdown or docs-only trees.
 - [ ] `source_sets[]`
 - [ ] `entry_points[]`
 - [ ] `sampling`
+- [ ] `interop_surfaces` (if hybrid)

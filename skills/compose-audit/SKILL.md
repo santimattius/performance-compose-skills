@@ -58,6 +58,7 @@ Do **not** load this skill when the user already named a narrow topic — load t
 | Unstable params / skipping | `compose-composition-core` |
 | Custom modifiers / draw phase | `compose-modifier-system` |
 | Nav3 migration | `compose-navigation-nav3` |
+| View↔Compose interop (AndroidView, ComposeView, hybrid screen) | `compose-views-interop` |
 | Accessibility only | `compose-quality` |
 
 This skill **diagnoses and routes**. It does not replace downstream remediation guidance.
@@ -142,6 +143,7 @@ Full heuristics: [references/detection-catalog.md](references/detection-catalog.
 | Navigation | NAV-NAV2-LEFTOVER, NAV-NAV3-NO-DECORATOR | compose-navigation-nav3 |
 | Tooling | PRV-NO-COMPILER-REPORTS, PRV-NO-BASELINE-PROFILE | compose-previews-tooling |
 | Quality | QLT-NO-SEMANTICS, QLT-LIVE-REGION-MISSING | compose-quality |
+| Interop | INTEROP-COMPOSEVIEW-WRONG-STRATEGY, INTEROP-RECYCLERVIEW-RESET-CONTENT, INTEROP-ANDROIDVIEW-UPDATE-HEAVY | compose-views-interop |
 | CMP | CMP-PLATFORM-API-IN-COMMON, CMP-REMEMBER-PLATFORM-LEAK | compose-architecture / compose-composition-core |
 
 ---
@@ -251,8 +253,8 @@ Template: [assets/AUDIT-REPORT.md](assets/AUDIT-REPORT.md).
 ## Deviations from other skills in this repo
 
 - **`assets/` folder** — templates (`AUDIT-REPORT.md`, `routing-table.md`) are agent-fillable; `references/` is read-only background.
-- **No Kotlin remediation samples in this file** — remediation lives in the eight routed skills.
-- **Pairs with all eight skills** — there is no single "vs" neighbor section; use Skill Routing + routing table.
+- **No Kotlin remediation samples in this file** — remediation lives in the nine routed skills.
+- **Pairs with all nine skills** — there is no single "vs" neighbor section; use Skill Routing + routing table.
 
 ---
 

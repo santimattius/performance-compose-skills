@@ -72,6 +72,17 @@ For each hit, build a `raw_signal` (`pattern_id`, `file`, `line`, `snippet`, `so
 | QLT-MERGE-DESCENDANTS-MISSING | Manual: custom clickable Row/Column | Button-like components |
 | QLT-LIVE-REGION-MISSING | Manual: loading/error `Text` without `liveRegion` | |
 
+## Interop — compose-views-interop
+
+| pattern_id | Ripgrep / review | Notes |
+|---|---|---|
+| INTEROP-ANDROIDVIEW-UPDATE-HEAVY | `rg -nU 'AndroidView\s*\([^)]*update\s*=' -t kotlin -A 15` | Allocations, `setText`, full rebuild in update |
+| INTEROP-COMPOSEVIEW-WRONG-STRATEGY | `rg -n 'ComposeView' -t kotlin -B 2 -A 12` without `setViewCompositionStrategy` in Fragment/Dialog file | Default strategy in Fragment |
+| INTEROP-RECYCLERVIEW-RESET-CONTENT | `rg -n 'onBindViewHolder' -t kotlin -A 20` with `setContent` | setContent per bind |
+| INTEROP-VIEWPAGER2-OFFSCREEN-COMPOSE | `rg -n 'offscreenPageLimit\s*=\s*[3-9]' -t kotlin` near Compose/Fragment pages | High limit + heavy Compose pages |
+| INTEROP-DIALOG-NO-LIFECYCLE-OWNER | `rg -n 'DialogFragment|BottomSheetDialog' -t kotlin -A 25` + `ComposeView` without `DisposeOnViewTreeLifecycleDestroyed` | Dialog window lifecycle |
+| INTEROP-ANDROIDVIEW-UNNECESSARY | `rg -n 'AndroidView\s*\(' -t kotlin -A 8` wrapping Text/Button-like custom UI | Confirm no SDK requirement |
+
 ## CMP — compose-architecture / compose-composition-core
 
 | pattern_id | Ripgrep / review | Notes |
