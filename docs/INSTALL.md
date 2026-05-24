@@ -2,6 +2,8 @@
 
 These skills follow the [Agent Skills](https://agentskills.io) spec (`SKILL.md` + `references/`). They work across **Claude Code**, **Cursor**, **Gemini CLI**, **Antigravity**, **OpenCode**, and **Codex**.
 
+They target **Jetpack Compose** and **Compose Multiplatform**. Most skills teach fixes; **[compose-audit](../skills/compose-audit/SKILL.md)** audits a codebase and routes each finding to the right skill.
+
 ## Recommended: install all agents at once
 
 Uses the [skills CLI](https://github.com/vercel-labs/skills) (`npx skills`). It detects your repo layout (`skills/`) and installs each skill into the correct directory per agent.
@@ -49,6 +51,18 @@ Convenience script from this repository:
 ./scripts/install-skills.sh          # workspace
 ./scripts/install-skills.sh --global # user-wide
 ```
+
+### Audit skill only
+
+Install just the audit/triage skill (includes `assets/` report template and routing table):
+
+```bash
+npx skills add santimattius/performance-compose-skills \
+  --skill compose-audit \
+  -a cursor -y
+```
+
+Useful triggers: *"audit my Compose project"*, *"review CMP code"*, *"find perf issues in Compose"*. For fixes after the audit, install the routed skills (or use `--skill '*'`).
 
 ### Where files land
 
@@ -188,18 +202,21 @@ Invoke a skill explicitly with `$skill-name` or `/skills` in the Codex UI.
 
 ## Skills included
 
-| Skill | Use when |
-|-------|----------|
-| `compose-composition-core` | State, recomposition, stability |
-| `compose-modifier-system` | Modifiers, layout/draw phase |
-| `compose-effects` | Side effects, `snapshotFlow` |
-| `compose-animations` | Animations, `graphicsLayer` |
-| `compose-architecture` | Clean Arch, MVVM, UiState |
-| `compose-navigation-nav3` | Navigation 3, NavKey |
-| `compose-previews-tooling` | Previews, Baseline Profiles |
-| `compose-quality` | A11y, semantics, UI tests |
+| Tier | Skill | Use when |
+|------|-------|----------|
+| 1 | `compose-composition-core` | State, recomposition, stability |
+| 1 | `compose-modifier-system` | Modifiers, layout/draw phase |
+| 2 | `compose-effects` | Side effects, `snapshotFlow` |
+| 2 | `compose-animations` | Animations, `graphicsLayer` |
+| 3 | `compose-architecture` | Clean Arch, MVVM, UiState |
+| 3 | `compose-navigation-nav3` | Navigation 3, NavKey |
+| 4 | `compose-previews-tooling` | Previews, Baseline Profiles |
+| 4 | `compose-quality` | A11y, semantics, UI tests |
+| Audit | `compose-audit` | Audit Compose/CMP; severity + route to fix skills |
 
-Full registry: [AGENTS.md](../AGENTS.md)
+`compose-audit` layout: `SKILL.md`, `references/`, and `assets/` (`AUDIT-REPORT.md`, `routing-table.md`).
+
+Full registry (4 tiers + Audit & Triage): [AGENTS.md](../AGENTS.md)
 
 ---
 
@@ -221,3 +238,4 @@ npx skills remove compose-composition-core -a cursor -y
 | Wrong skill version | `npx skills update -y` or reinstall from GitHub |
 | Claude marketplace vs skills CLI | Marketplace → `.claude-plugin`; `npx skills` → `.claude/skills/` or `.agents/skills/` — both are valid |
 | Monorepo / partial install | `npx skills add ... --skill compose-composition-core --skill compose-effects` |
+| Audit without full bundle | `npx skills add ... --skill compose-audit -a cursor -y` then add routed skills as needed |
