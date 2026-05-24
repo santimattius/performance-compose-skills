@@ -1,20 +1,20 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "performance-compose-skills",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "owner": {
     "name": "Santiago Mattiauda",
     "url": "https://github.com/santimattius"
   },
   "metadata": {
-    "description": "Performance-first AI agent skills for Jetpack Compose. Skills lead with the Composition → Layout → Drawing model for state, recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, and accessibility."
+    "description": "Performance-first AI agent skills for Jetpack Compose and Compose Multiplatform. Skills lead with the Composition → Layout → Drawing model; compose-audit scans codebases and routes findings to the canonical fix skills."
   },
   "plugins": [
     {
       "name": "performance-compose-skills",
-      "description": "Performance-first agent skills for Jetpack Compose — recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, and accessibility grounded in the Composition → Layout → Drawing model.",
+      "description": "Performance-first agent skills for Jetpack Compose and Compose Multiplatform — recomposition, modifiers, effects, animations, architecture, Navigation 3, previews, accessibility, and compose-audit grounded in the Composition → Layout → Drawing model.",
       "repository": "https://github.com/santimattius/performance-compose-skills",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": {
         "name": "Santiago Mattiauda",
         "url": "https://github.com/santimattius"
@@ -25,6 +25,7 @@
         "android",
         "kotlin",
         "jetpack-compose",
+        "compose-multiplatform",
         "compose-performance",
         "recomposition",
         "modifiers",
@@ -41,11 +42,14 @@
         "compose-architecture",
         "compose-navigation-nav3",
         "compose-previews-tooling",
-        "compose-quality"
+        "compose-quality",
+        "compose-audit"
       ],
       "tags": [
         "jetpack-compose",
+        "compose-multiplatform",
         "compose-performance",
+        "compose-audit",
         "recomposition",
         "performance",
         "android"
