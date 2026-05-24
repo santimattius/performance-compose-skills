@@ -29,3 +29,10 @@
 |-------|---------|------|
 | `compose-previews-tooling` | `@Preview`, `@PreviewWrapper` (April 2026), `@PreviewParameter`, screenshot testing, Baseline Profiles, Compiler Reports, Composition Tracing, Macrobenchmark | [SKILL.md](skills/compose-previews-tooling/SKILL.md) |
 | `compose-quality` | Accessibility semantics, `mergeDescendants`, `customActions`, `liveRegion`, `traversalIndex`, UI tests, Paparazzi, Roborazzi | [SKILL.md](skills/compose-quality/SKILL.md) |
+
+<!-- Audit & Triage -->
+## Audit & Triage
+
+| Skill | Trigger | Link |
+|-------|---------|------|
+| `compose-audit` | Audit a Compose / CMP project; classify findings (critical/warning/suggestion) and route to canonical skills. Triggers: "audit my Compose project", "review CMP code", "find perf issues in Compose", "recomposition audit" | [SKILL.md](skills/compose-audit/SKILL.md) |
