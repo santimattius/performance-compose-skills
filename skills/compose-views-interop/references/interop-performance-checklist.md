@@ -41,3 +41,8 @@ Mixed View+Compose may increase APK and build time (see [Compare metrics](https:
 ## Audit cross-check
 
 If checklist fails, run `compose-audit` for `INTEROP-*` patterns and load `compose-views-interop` for remediation.
+
+
+---
+
+> **Platform scope**: This checklist is **Android-only**. All items assume `android.view.View`, `Fragment`, and `AndroidView`/`ComposeView`. For CMP iOS/Desktop/Web interop, see [`../../_shared/cmp-platform.md#7-view-interop-across-platforms`](../../_shared/cmp-platform.md).

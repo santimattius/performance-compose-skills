@@ -81,6 +81,39 @@ Useful triggers: *"audit my Compose project"*, *"review CMP code"*, *"find perf 
 
 ---
 
+## Shared resources
+
+Every skill links to `skills/_shared/cmp-platform.md` for canonical CMP platform rules (source-set map, lifecycle version gates, navigation options, tooling matrix). The `_shared/` directory is **not a skill** and is NOT automatically installed by `npx skills add --skill '*'` — it is not recognized as a skill because it has no root `SKILL.md`.
+
+### Option A — Full install (recommended): use `--skill '*'`
+
+When installing all skills, copy `_shared/` manually after `npx skills` completes:
+
+```bash
+# After npx skills add ...
+# Cursor project install:
+cp -R skills/_shared .agents/skills/_shared
+
+# Claude Code project install:
+cp -R skills/_shared .claude/skills/_shared
+
+# Global Cursor:
+cp -R skills/_shared ~/.cursor/skills/_shared
+
+# Global Claude Code:
+cp -R skills/_shared ~/.claude/skills/_shared
+```
+
+### Option B — Single-skill install
+
+If you install a single skill (e.g. `--skill compose-effects`), the `## CMP Applicability` link to `_shared/cmp-platform.md` may not resolve locally. In that case either:
+
+1. Copy `_shared/` alongside the installed skill (same as Option A), or
+2. Load `_shared/cmp-platform.md` directly from GitHub raw URL:
+   `https://raw.githubusercontent.com/santimattius/performance-compose-skills/main/skills/_shared/cmp-platform.md`
+
+---
+
 ## Per-agent (native commands)
 
 ### Claude Code (plugin marketplace)

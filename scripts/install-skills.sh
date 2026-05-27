@@ -66,5 +66,11 @@ echo "Installing from: $SOURCE"
 echo "Agents: ${AGENTS[*]}"
 echo "Scope: $([[ "$GLOBAL" -eq 1 ]] && echo global || echo project)"
 echo
+# NOTE (Plan B for _shared/): npx skills does not install skills/_shared/ automatically
+# because it is not a skill (no root SKILL.md). After running this script, copy _shared/
+# to each agent's skill root manually if you need CMP cross-links to resolve:
+#   cp -R skills/_shared .agents/skills/_shared   # Cursor/Gemini CLI/Antigravity/OpenCode/Codex
+#   cp -R skills/_shared .claude/skills/_shared   # Claude Code
+# See docs/INSTALL.md §"Shared resources" for the full procedure.
 
 exec npx skills "${ARGS[@]}"

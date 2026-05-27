@@ -100,6 +100,24 @@ When you see `LaunchedEffect` + `Animatable` together, load both skills.
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ✅ | All animation APIs are commonMain-safe |
+| `androidMain` | ✅ | Full skill content applies |
+| `iosMain` | ✅ | `animate*AsState`, `Animatable`, `updateTransition`, `AnimatedVisibility`, `AnimatedContent` all supported |
+| `desktopMain` | ✅ | Same as above |
+| `wasmJsMain` | ✅ | Same as above |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: All animation APIs in this skill (`animate*AsState`, `Animatable`, `updateTransition`, `AnimatedVisibility`, `animateContentSize`, `graphicsLayer` lambda) are `commonMain`-safe. No version gates or platform exclusions apply. See [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md) for general CMP rules.
+
+---
+
 ## Critical Patterns
 
 ### 1. `graphicsLayer { }` Lambda Overload — ALWAYS

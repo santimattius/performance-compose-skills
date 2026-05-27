@@ -100,6 +100,24 @@ Use both when:
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ⚠️ | `LaunchedEffect`, `DisposableEffect`, `SideEffect`, `snapshotFlow` all ✅; `collectAsStateWithLifecycle` version-gated |
+| `androidMain` | ✅ | Full skill content applies |
+| `iosMain` | ⚠️ | `collectAsStateWithLifecycle` requires `lifecycle-runtime-compose` ≥ 2.8 |
+| `desktopMain` | ⚠️ | Same lifecycle version gate; also needs `kotlinx-coroutines-swing` in `jvmMain` |
+| `wasmJsMain` | ⚠️ | Same lifecycle version gate |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: `collectAsStateWithLifecycle` requires `androidx.lifecycle:lifecycle-runtime-compose` ≥ 2.8 in `commonMain`. Below 2.8, use `collectAsState()` or a `expect`/`actual` shim. See [`../_shared/cmp-platform.md#4-lifecycle--state-collection`](../_shared/cmp-platform.md).
+
+---
+
 ## Critical Patterns
 
 ### 1. Keys Must Be Exhaustive

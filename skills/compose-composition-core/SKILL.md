@@ -103,6 +103,24 @@ Use both when: reading a `StateFlow` inside a composable (`collectAsStateWithLif
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ✅ | All patterns fully supported |
+| `androidMain` | ✅ | Full skill content applies |
+| `iosMain` | ✅ | `remember`, `derivedStateOf`, `CompositionLocal` all commonMain-safe |
+| `desktopMain` | ✅ | Same as above |
+| `wasmJsMain` | ✅ | Same as above |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: Watch for `CMP-REMEMBER-PLATFORM-LEAK` — never capture `android.content.Context`, `Activity`, or `UIViewController` inside `remember { }` in `commonMain`. These are platform types and will cause compilation failures on non-Android targets. Use `expect`/`actual` to provide platform context where needed.
+
+---
+
 ## Critical Patterns
 
 ### 1. 3-Phase Lambda Deferral

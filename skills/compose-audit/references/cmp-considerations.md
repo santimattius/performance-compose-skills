@@ -1,5 +1,7 @@
 # Compose Multiplatform Considerations
 
+> **Canonical CMP platform rules**: [`../../_shared/cmp-platform.md`](../../_shared/cmp-platform.md) — source of truth for source-set map, forbidden imports, expect/actual patterns, lifecycle version gates, navigation options, tooling matrix, and per-skill applicability index. This document carries **audit severity policy only**.
+
 Official reference: [Compose Multiplatform](https://kotlinlang.org/docs/multiplatform/compose-multiplatform.html)
 
 Validate CMP-specific findings with **context7** MCP (`/jetbrains/compose-multiplatform`, `/kotlinlang/docs`) and record URLs in `evidence_docs`.

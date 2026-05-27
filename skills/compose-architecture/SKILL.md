@@ -97,6 +97,24 @@ Load this skill when any of the following applies:
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ⚠️ | MVI/MVVM patterns ✅; Hilt ❌; ViewModel requires `lifecycle-viewmodel-compose` 2.10.0 |
+| `androidMain` | ✅ | Full skill content applies; Hilt available here |
+| `iosMain` | ⚠️ | ViewModel + StateFlow ✅ (lifecycle 2.10+); use Koin or expect/actual factory for DI |
+| `desktopMain` | ⚠️ | Same; also requires `kotlinx-coroutines-swing` in `jvmMain` |
+| `wasmJsMain` | ⚠️ | Same lifecycle version gate |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: Hilt is `androidMain`-only (kapt). For `commonMain` DI, use **Koin** (`koin-compose-viewmodel`) or a manual `expect`/`actual` factory. `ViewModel` and `viewModelScope` are multiplatform from `org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose` **2.10.0** — always provide an initializer: `viewModel { MyViewModel() }`. See [`references/cmp-architecture-boundary.md`](references/cmp-architecture-boundary.md).
+
+---
+
 ## Critical Patterns
 
 ### 1. `collectAsStateWithLifecycle` — always, never `collectAsState`
@@ -112,6 +130,8 @@ val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 // WRONG — collects forever
 val uiState by viewModel.uiState.collectAsState()
 ```
+
+> **In CMP**: requires `androidx.lifecycle:lifecycle-runtime-compose` ≥ **2.8.0** in `commonMain`. Below 2.8, use `collectAsState()` or a `expect`/`actual` shim. See [references/cmp-architecture-boundary.md](references/cmp-architecture-boundary.md).
 
 ### 2. `stateIn` canonical pattern
 
@@ -138,6 +158,8 @@ class CoursesViewModel @Inject constructor(
 // WRONG — couples ViewModel to Android framework, makes testing harder
 class CoursesViewModel(application: Application) : AndroidViewModel(application) { ... }
 ```
+
+> **In CMP**: `ViewModel` itself is multiplatform from `org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose` **2.10.0**. Below 2.10, use the `expect`/`actual` boundary in [references/cmp-architecture-boundary.md](references/cmp-architecture-boundary.md). `AndroidViewModel` is Android-only and must never appear in `commonMain`.
 
 ### 4. No ViewModel instances in child composables
 
@@ -423,10 +445,17 @@ implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.+")
 // Stable collections for UiState
 implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
 
-// Hilt ViewModel injection
+// Hilt ViewModel injection (androidMain only — Android-only)
 implementation("com.google.dagger:hilt-android:2.51.+")
 kapt("com.google.dagger:hilt-compiler:2.51.+")
 implementation("androidx.hilt:hilt-navigation-compose:1.2.+")
+
+// CMP: Koin alternative for commonMain DI
+// implementation("io.insert-koin:koin-compose-viewmodel:3.5+")
+// implementation("io.insert-koin:koin-core:3.5+")
+
+// CMP: multiplatform ViewModel + lifecycle (lifecycle-viewmodel-compose 2.10.0)
+// implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
 ```
 
 ---

@@ -42,6 +42,7 @@
 | CMP-PLATFORM-API-IN-COMMON | Platform import in commonMain | critical | commonMain | compose-architecture | — |
 | CMP-EXPECT-NO-ACTUAL | expect declaration without matching actual | warning | commonMain | compose-architecture | — |
 | CMP-REMEMBER-PLATFORM-LEAK | remember { platform type } in commonMain | warning | commonMain | compose-composition-core | — |
+| CMP-NAV-COMMONMAIN | androidx.navigation3 import in commonMain without JetBrains CMP artifact | warning | commonMain | compose-navigation-nav3 | Migrate to org.jetbrains.androidx.navigation3:navigation3-ui or use CMP alternatives |
 
 ## Invariants
 

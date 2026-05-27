@@ -87,6 +87,24 @@ Use this skill when:
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ✅ | All modifier APIs are commonMain-safe |
+| `androidMain` | ✅ | Full skill content applies |
+| `iosMain` | ✅ | `graphicsLayer`, `drawBehind`, `Modifier.Node`, `ModifierNodeElement` all supported |
+| `desktopMain` | ✅ | Same as above |
+| `wasmJsMain` | ✅ | Same as above |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: `graphicsLayer`, `drawBehind`, `Modifier.layout`, and `ModifierNodeElement` are all `commonMain`-safe. Custom draw modifiers using `Canvas` (Compose) APIs work on all CMP targets. Verify `graphicsLayer` lambda overload availability in your CMP version (`CMP 1.6+`). See [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md).
+
+---
+
 ## Critical Patterns
 
 ### 1. `Modifier.composed` Is DEPRECATED — Use `ModifierNodeElement` + `Modifier.Node`

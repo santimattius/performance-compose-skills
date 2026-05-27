@@ -1,18 +1,21 @@
 ---
 name: compose-navigation-nav3
 description: >
-  Jetpack Compose Navigation 3 (Nav3 1.0.0 stable): NavKey, NavDisplay, NavBackStack,
-  SceneStrategy, ViewModel decorators, process-death safety, and Nav2→Nav3 migration.
-  Trigger: when implementing navigation in Compose with Nav3, migrating from Nav2,
-  using NavKey, NavDisplay, SceneStrategy, bottom sheet/dialog navigation, or wiring
-  ViewModels to navigation entries.
+  Jetpack Compose Navigation 3 (Nav3 1.0.0 stable, Android-only as of Nav3 1.0.0): NavKey,
+  NavDisplay, NavBackStack, SceneStrategy, ViewModel decorators, process-death safety,
+  and Nav2→Nav3 migration. CMP Nav3 available via org.jetbrains.androidx.navigation3 1.0.0-alpha05
+  from CMP 1.10+. Trigger: when implementing navigation in Compose with Nav3, migrating from Nav2,
+  using NavKey, NavDisplay, SceneStrategy, bottom sheet/dialog navigation, wiring ViewModels to
+  navigation entries, or choosing CMP navigation alternatives (compose-router, Decompose, Voyager).
 license: Apache-2.0
 metadata:
   author: Santiago Mattiauda
-  version: "1.0"
+  version: "1.1"
 ---
 
-> **VALIDATED 2026-05 · Nav3 1.0.0 (stable)**
+> **VALIDATED 2026-05 · Nav3 1.0.0 (stable, Android) · CMP Nav3 1.0.0-alpha05 (CMP 1.10+)**
+
+> ⚠️ **`androidx.navigation3` is Android-only.** For Compose Multiplatform, use `org.jetbrains.androidx.navigation3:navigation3-ui` (CMP 1.10+ / alpha) or see [CMP alternatives](references/cmp-alternatives.md).
 
 ## Performance First
 
@@ -93,6 +96,26 @@ Use this skill when:
 ## When to Use This vs compose-architecture
 
 `compose-architecture` covers ViewModel scoping, `collectAsStateWithLifecycle`, and the Screen/Content split. `compose-navigation-nav3` covers how entries are structured, how the back stack is managed, and how ViewModel lifecycle is tied to navigation entries via decorators. Use both when connecting ViewModels to specific nav destinations.
+
+---
+
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ⚠️ | CMP Nav3 alpha: `org.jetbrains.androidx.navigation3:navigation3-ui` 1.0.0-alpha05 (CMP 1.10+) |
+| `androidMain` | ✅ | Full skill content applies; use `androidx.navigation3:navigation3-compose` (stable 1.0.0) |
+| `iosMain` | ⚠️ | CMP Nav3 alpha only; or use Decompose/Voyager for stable production nav |
+| `desktopMain` | ⚠️ | CMP Nav3 alpha only; same alternatives apply |
+| `wasmJsMain` | ⚠️ | CMP Nav3 alpha only; same alternatives apply |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**: Use `org.jetbrains.androidx.navigation3:navigation3-ui` **1.0.0-alpha05** (requires CMP 1.10+). On non-JVM targets, `NavKey` serialization uses **kotlinx.serialization `SavedStateConfiguration`** — not reflection. The API surface (NavDisplay, decorators, rememberNavBackStack) is identical to the Android stable artifact. For stable production nav on non-Android targets, see [references/cmp-alternatives.md](references/cmp-alternatives.md).
+
+**Audit pattern** `CMP-NAV-COMMONMAIN`: `import androidx.navigation3` in `commonMain` without the JetBrains CMP artifact → route here for guidance on migrating to `org.jetbrains.androidx.navigation3`.
 
 ---
 

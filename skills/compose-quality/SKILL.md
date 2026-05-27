@@ -84,6 +84,28 @@ Use this skill when:
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ⚠️ | Semantics/a11y ✅; `runComposeUiTest` ✅; Paparazzi ❌; Roborazzi ⚠️ Android runner only |
+| `androidMain` | ✅ | Full skill content applies; Paparazzi + Roborazzi available |
+| `iosMain` | ⚠️ | Semantics → VoiceOver ✅; `performAccessibilityAudit()` via XCTest; no Paparazzi |
+| `desktopMain` | ⚠️ | Semantics ✅; `runComposeUiTest` via `jvmTest`; no Paparazzi |
+| `wasmJsMain` | ⚠️ | Semantics ✅; `runComposeUiTest` via `wasmJsTest`; no screenshot testing |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**If using in CMP**:
+- Compose semantics are fully `commonMain`-safe — all `Modifier.semantics { }` patterns in this skill apply to all platforms.
+- iOS accessibility: semantics automatically bridge to VoiceOver; `testTag` → `accessibilityIdentifier`; configure `AccessibilitySyncOptions` on `ComposeUIViewController`. See [`references/cmp-ios-accessibility.md`](references/cmp-ios-accessibility.md).
+- UI testing: use `runComposeUiTest` from `org.jetbrains.compose.ui:ui-test` in `commonTest` (not `compose-ui-test-junit4`). See [`references/cmp-ui-testing.md`](references/cmp-ui-testing.md).
+- **Paparazzi**: Android only — do NOT suggest for CMP iOS/Desktop screenshot tests. Use Roborazzi ⚠️ for CMP (Android JVM runner, not pixel-perfect on non-Android).
+
+---
+
 ## Critical Patterns
 
 ### 1. `mergeDescendants = true` — Logical UI Groupings

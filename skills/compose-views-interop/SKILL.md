@@ -1,6 +1,7 @@
 ---
 name: compose-views-interop
 description: >
+  (Android-only — uses android.view.View)
   Performance-first View↔Compose interoperability during incremental migration:
   ComposeView, AndroidView, ViewCompositionStrategy, RecyclerView/ViewPager2 hybrids,
   Dialog/BottomSheet, Fragment and multi-Activity hosting. Trigger: AndroidView,
@@ -80,6 +81,26 @@ Load this skill when:
 - **No Accompanist** — use androidx ViewPager2, Compose, `ui-viewbinding` only
 - **No Nav3 `AndroidFragment` / scene recipes** — follow-up change
 - **No CMP desktop View interop**
+
+---
+
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+> ⚠️ **This skill is Android-only.** All APIs (`AndroidView`, `ComposeView`, `ViewCompositionStrategy`, `RecyclerView`, `Fragment`) use `android.view.View`. There is no CMP equivalent of this skill.
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ❌ | No `android.view.View` in commonMain — the entire skill is out of scope |
+| `androidMain` | ✅ | Full skill content applies |
+| `iosMain` | ❌ | Use `UIKitView`, `UIKitViewController`, `ComposeUIViewController` — outside this skill's scope |
+| `desktopMain` | ❌ | Use `SwingPanel` / `SwingInterop` — outside this skill's scope |
+| `wasmJsMain` | ❌ | Use `HtmlView` (experimental) — outside this skill's scope |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**CMP scope**: This skill covers **Android View interop ONLY**. For iOS embedding (`UIKitView`, `ComposeUIViewController`), desktop (`SwingPanel`), or web (`HtmlView`), see [`../_shared/cmp-platform.md#7-view-interop-across-platforms`](../_shared/cmp-platform.md).
 
 ---
 

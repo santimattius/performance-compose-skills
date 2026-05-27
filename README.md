@@ -11,19 +11,34 @@ Use **[compose-audit](skills/compose-audit/SKILL.md)** to scan an existing codeb
 
 ## Skills
 
-| Tier | Skill | Focus |
-|------|-------|--------|
-| 1 | [compose-composition-core](skills/compose-composition-core/SKILL.md) | State, recomposition, stability, identity |
-| 1 | [compose-modifier-system](skills/compose-modifier-system/SKILL.md) | Modifiers, layout/draw phase, `ModifierNodeElement` |
-| 2 | [compose-effects](skills/compose-effects/SKILL.md) | Side effects, `snapshotFlow`, effect keys |
-| 2 | [compose-animations](skills/compose-animations/SKILL.md) | Animations in Drawing phase, `graphicsLayer` |
-| 3 | [compose-architecture](skills/compose-architecture/SKILL.md) | Clean Architecture, MVVM, UiState |
-| 3 | [compose-navigation-nav3](skills/compose-navigation-nav3/SKILL.md) | Navigation 3, NavKey, decorators |
-| 4 | [compose-previews-tooling](skills/compose-previews-tooling/SKILL.md) | Previews, Baseline Profiles, profiling |
-| 4 | [compose-quality](skills/compose-quality/SKILL.md) | Accessibility, semantics, UI testing |
-| Audit | [compose-audit](skills/compose-audit/SKILL.md) | Audit Compose/CMP projects; route findings to canonical skills |
+| Tier | Skill | Focus | CMP |
+|------|-------|--------|-----|
+| 1 | [compose-composition-core](skills/compose-composition-core/SKILL.md) | State, recomposition, stability, identity | ✅ |
+| 1 | [compose-modifier-system](skills/compose-modifier-system/SKILL.md) | Modifiers, layout/draw phase, `ModifierNodeElement` | ✅ |
+| 2 | [compose-effects](skills/compose-effects/SKILL.md) | Side effects, `snapshotFlow`, effect keys | ⚠️ |
+| 2 | [compose-animations](skills/compose-animations/SKILL.md) | Animations in Drawing phase, `graphicsLayer` | ✅ |
+| 3 | [compose-architecture](skills/compose-architecture/SKILL.md) | Clean Architecture, MVVM, UiState | ⚠️ |
+| 3 | [compose-navigation-nav3](skills/compose-navigation-nav3/SKILL.md) | Navigation 3, NavKey, decorators; CMP Nav3 alpha | ⚠️ |
+| 4 | [compose-previews-tooling](skills/compose-previews-tooling/SKILL.md) | Previews, Baseline Profiles, profiling | ⚠️ |
+| 4 | [compose-quality](skills/compose-quality/SKILL.md) | Accessibility, semantics, UI testing | ⚠️ |
+| Audit | [compose-audit](skills/compose-audit/SKILL.md) | Audit Compose/CMP projects; route findings to canonical skills | ✅ |
+
+**CMP column**: ✅ fully commonMain-safe · ⚠️ partial (version-gated or some Android-only items) · ❌ Android-only.
 
 Full registry: [AGENTS.md](AGENTS.md)
+
+## Compose Multiplatform
+
+Every skill in this repo carries a `## CMP Applicability` table documenting which APIs are `commonMain`-safe, which are Android-only, and which require version gates.
+
+**Canonical CMP rules**: [`skills/_shared/cmp-platform.md`](skills/_shared/cmp-platform.md) — source-set map, forbidden imports, `expect`/`actual` patterns, lifecycle version gates (2.8 / 2.10), navigation options (CMP Nav3 alpha), iOS accessibility, tooling matrix, and version pinning.
+
+Quick facts (May 2026):
+- `collectAsStateWithLifecycle` in `commonMain`: requires `lifecycle-runtime-compose` ≥ 2.8
+- `viewModel { MyViewModel() }` in `commonMain`: requires `lifecycle-viewmodel-compose` 2.10.0 (`org.jetbrains.androidx.lifecycle`)
+- CMP Nav3: `org.jetbrains.androidx.navigation3:navigation3-ui` 1.0.0-alpha05 (CMP 1.10+)
+- iOS accessibility: semantics → VoiceOver automatically; configure `AccessibilitySyncOptions` on `ComposeUIViewController`
+- CMP UI tests: `runComposeUiTest` from `org.jetbrains.compose.ui:ui-test` in `commonTest`
 
 ## Installation
 
@@ -73,6 +88,9 @@ Triggers: *"audit my Compose project"*, *"review CMP code"*, *"find perf issues 
 
 ```
 skills/                    # Agent Skills (SKILL.md per skill)
+├── _shared/               # Shared cross-skill references
+│   ├── README.md          # Index of shared files
+│   └── cmp-platform.md   # Canonical CMP platform rules
 ├── compose-composition-core/
 │   ├── SKILL.md
 │   └── references/

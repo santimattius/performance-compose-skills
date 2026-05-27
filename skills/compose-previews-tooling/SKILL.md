@@ -74,6 +74,32 @@ Use this skill when:
 
 ---
 
+## CMP Applicability
+
+> Canonical CMP rules: [`../_shared/cmp-platform.md`](../_shared/cmp-platform.md)
+
+| Source set | Status | Notes |
+|------------|--------|-------|
+| `commonMain` | ⚠️ | JetBrains `@Preview` ✅; `runComposeUiTest` ✅; Paparazzi/Macrobenchmark/Layout Inspector ❌ |
+| `androidMain` | ✅ | Full skill content applies; Android Studio `@Preview` + all tooling available |
+| `iosMain` | ⚠️ | JetBrains `@Preview` ✅ (Fleet/IJ); Compose Hot Reload ✅; use Instruments for profiling |
+| `desktopMain` | ⚠️ | JetBrains `@Preview` ✅; Compose Hot Reload ✅; use JFR/JVisualVM for profiling |
+| `wasmJsMain` | ⚠️ | JetBrains `@Preview` ✅ (limited); use Chrome DevTools for profiling |
+
+**Status legend**: ✅ fully supported · ⚠️ partial / version-gated · ❌ Android-only.
+
+**Android-only tools** (do NOT suggest for CMP non-Android targets):
+- **Paparazzi** — Android/JVM renderer only
+- **Macrobenchmark** — requires Android device/emulator
+- **Baseline Profiles** — AGP + Android only
+- **Layout Inspector** — Android Studio only
+
+**CMP-compatible tools**: JetBrains `@Preview` (CMP 1.5+, Fleet/IJ), Compose Hot Reload (experimental), `runComposeUiTest` (commonTest), Compose Compiler Reports (all targets), Roborazzi ⚠️ (1.7+, Android JVM runner).
+
+See full tooling matrix: [`references/cmp-tooling-matrix.md`](references/cmp-tooling-matrix.md).
+
+---
+
 ## Critical Patterns
 
 ### 1. `@PreviewWrapper` + `PreviewWrapperProvider` — New April 2026
